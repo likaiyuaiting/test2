@@ -14,5 +14,6 @@ int main(viod)
 		if(i%2==0)
 			printf("%d\t",i);
 	}
+	printf("haha\n");
 	return 0;
 }
