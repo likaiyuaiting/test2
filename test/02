@@ -1,0 +1,248 @@
+#include <stdio.h>
+
+#if 0
+int main(void)
+{
+	int r;
+
+	printf("r:");
+	scanf("%d", &r);
+	int y;
+	int x;
+
+	for (y = 0; y <= 2 * r; y++) {
+		for (x = 0; x <= 2 * r; x++) {
+			if (y<=x+r && y>=x-r &&
+				y>=-x+r && y<=-x+3*r ) {
+				printf("*");
+			} else {
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+
+	system("pause");
+}
+#endif 
+
+#if 0
+int main(void)
+{
+	int num ;
+
+	for ( num = 100; num < 1000; num++) {
+		int g = num % 10;
+		int s = num / 10 % 10;
+		int b = num / 100;
+
+		if (g*g*g + s*s*s + b*b*b == num) {
+			printf("%d是一个水仙花数\n", num);
+		}
+	}
+
+	system("pause");
+}
+#endif
+
+#if 0
+int main(void)
+{
+	int num = 2;
+	int sum = num;
+	int t = num;
+
+	int i;
+	printf("%d", t);
+	for (i = 1; i < 5; i++) {
+		t = t * 10 + num;
+		sum += t;
+		printf("+%d", t);
+	}
+	printf("=%d", sum);
+
+	system("pause");
+}
+#endif
+
+#if 0
+int brace, brack, paren;
+
+void in_mutli_comment()
+{
+	int c = getchar();
+	int d = getchar();
+	// *a
+	while (!(c == '*' && d == '/')) {
+		c = d;
+		d = getchar();
+	}
+}
+
+void in_line_comment()
+{
+	int c;
+	while ((c = getchar()) != '\n')
+		;
+}
+
+int in_quote(char c)
+{
+	char d;
+
+	while (1) {
+		d = getchar();
+		if (d == '\\')
+			getchar();
+		if (d == c)
+			break;
+	}
+}
+
+void find(char c)
+{
+	if (c == '{')
+		brace++;
+	else if (c == '[')
+		brack++;
+	else if (c == '(')
+		paren++;
+	else if (c == '}')
+		brace--;
+	else if (c == ']')
+		brack--;
+	else if (c == ')')
+		paren--;
+}
+
+int main(void)
+{
+	int c;
+
+	while ((c = getchar()) != EOF) {
+		if (c == '/') {// 有可能进入注释
+			int d = getchar();
+			if (d == EOF) break;
+			if (d == '*') // 多行注释
+				in_mutli_comment();
+			else if (d == '/') // 单行注释
+				in_line_comment();
+			else
+				find(d);
+		}else if (c == '\'' || c == '"') { // 进入字符或字符串
+			in_quote(c);
+		} else {
+			find(c);
+		}
+		if (brace < 0) {
+			printf("大括号有问题\n");
+			brace = 0;
+		}
+		if (brack < 0) {
+			printf("中括号有问题\n");
+			brack = 0;
+		}
+		if (paren < 0) {
+			printf("中括号有问题\n");
+			paren = 0;
+		}
+	} // end while 
+
+	if (brace > 0) {
+		printf("大括号有问题\n");
+	}
+	if (brack > 0) {
+		printf("中括号有问题\n");
+	}
+	if (paren > 0) {
+		printf("小括号有问题\n");
+	}
+
+	system("pause");
+}
+#endif
+
+#if 0
+int main(void)
+{
+	int this_man;
+
+	for (this_man = 'a'; this_man <= 'd'; this_man++) {
+		int r = (this_man != 'a') + (this_man == 'c') + 
+			(this_man == 'd') + (this_man != 'd');
+		if (r == 3) {
+			printf("%c是嫌疑犯\n", this_man);
+			break;
+		}
+	}
+
+	system("pause");
+}
+#endif
+
+#if 0
+int main(void)
+{
+	int a, b, c, d, e;
+	int ta, tb, tc, td, te;
+	int t;
+	for (a = 1; a <= 5;a++)
+	{
+		for (b = 1; b <= 5; b++) {
+			for (c = 1; c <= 5;c++)
+			{
+				for (d = 1; d <= 5; d++) {
+					e = 15 - (a + b + c + d);
+					if (a*b*c*d*e != 120)
+						continue;
+					ta = ((b == 2) + (a == 3)) == 1;
+					tb = ((b == 2) + (e == 4)) == 1;
+					tc = ((c == 1) + (d == 2)) == 1;
+					td = ((c == 5) + (d == 3)) == 1;
+					te = ((e == 4) + (a == 1)) == 1;
+					t = ta + tb + tc + td + te;
+					// printf("t=%d\n", t);
+					if (t == 5) {
+						printf("a=%d\nb=%d\nc=%d\nd=%d\ne=%d\n",
+							a, b, c, d, e);
+						goto end;
+					}
+				}
+			}
+		}
+	}
+
+end:
+
+	system("pause");
+}
+
+#endif
+
+int main(void)
+{
+	int n;
+	printf("n:");
+	scanf("%d", &n);
+
+	int i;
+	for (i = 1; i <= n; i++) {
+		for (int j = 0; j < n - i; j++)
+			printf(" ");
+		for (int j = 1; j < 2 * i; j++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	for (i = n-1; i >= 0; i--) {
+		for (int j = 0; j < n - i; j++)
+			printf(" ");
+		for (int j = 1; j < 2 * i; j++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	system("pause");
+}
