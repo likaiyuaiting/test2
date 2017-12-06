@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+class Base//基类
+{
+public:
+	virtual void FunTest1()
+	{
+		cout << "我是Base的虚函数FunTest1()" << endl;
+	}
+};
+//共有继承public/保护继承protected /私有继承private
+class Dir :public Base//子类
+{
+private:
+	int _d;
+public:
+	Dir(int d)
+	{
+		_d = d;
+	}
+	virtual void FunTest1()
+	{
+		cout << "我是Dir的虚函数FunTest1()" << endl;
+	}
+	void FunTest2()
+	{
+		cout << "Dir::FunTest2()" << endl;
+	}
+	~Dir()
+	{}
+};
+void fun(Base & s)
+{
+	s.FunTest1();
+}
+int main()
+{
+	Base b;
+	Dir d(53);
+	fun(b);
+	fun(d);
+	return 0;
+}
