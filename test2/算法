@@ -1,0 +1,308 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#if 0
+
+/*
+题目：求 1+2+…+n， 要求不能使用乘除法、for、while、 if、else、switch、case 等关键字
+以及条件判断语句（A?B:C）
+*/
+int fun(int n)
+{
+	if (n == 1)  return 1;
+	else return n + fun(n - 1);
+}
+int main(void)
+{
+	int n;
+	scanf("%d", &n);
+	fun(n);
+	system("pause");
+	return 0;
+}
+#endif
+
+
+#if 0
+/*
+题目：输入一个已经按升序排序过的数组和一个数字， 在数组中查找两个数，
+使得它们的和正好是输入的那个数字。 要求时间复杂度是 O(n)。
+如果有多对数字的和等于输入的数字，输出任意一对即可。 
+例如输入数组 1、2、4、7、11、15 和数字 15。由于 4+11=15，因此输出 4 和 11。
+*/
+int main(void)
+{
+	int arr[] = { 1, 2, 4, 7, 11, 15 },num;
+	int i = 0, j = sizeof(arr) / sizeof(arr[0])-1;
+	scanf("%d",&num);
+	while (i < j)
+	{
+		if (arr[i] + arr[j] == num)	break;
+		else if (arr[i] + arr[j] < num)  i++;
+		else   j--;
+	}
+	if (i-j)
+	    printf("%d  %d", arr[i], arr[j]);
+	system("pause");
+	return 0;
+}
+
+#endif
+
+
+#if 0
+
+#include<string.h>
+//题目：输入一个表示整数的字符串，把该字符串转换成整数并输出。
+//例如输入字符串"345"，则输出整数 345
+int main(void)
+{
+	char str[10] = "345";
+	int i = 0, sum = 0, num[10] = {0};
+	//gets(str);
+	strlen(str);
+	while (str[i])
+	{
+		num[i]= str[i] - 48;
+		i++;
+	}
+	for (int j = 0; j < i; j++)
+	{
+		sum = sum * 10+ num[j] ;
+	}
+	printf("%d\n",sum);
+	system("pause");
+	return 0;
+}
+
+#endif
+#if 0
+#include<string.h>
+//题目：输入一个表示整数的字符串，把该字符串转换成整数并输出。
+//例如输入字符串"345"，则输出整数 345
+int main(void)
+{
+	char str[10] ;
+	int i = 0, sum = 0 ;
+	gets(str);
+	strlen(str);
+	while (str[i])
+	{
+		sum =sum*10 + str[i] - 48;
+		i++;
+	}
+	printf("%d\n", sum);
+	system("pause");
+	return 0;
+}
+
+#endif
+
+#if 0
+//输入两个整数 n 和 m，从数列 1，2，3.......n 中 随意取几个数, 
+//使其和等于 m ,要求将其中所有的可能组合列出来. 
+void output(int arr[],int len,int n)
+{
+	int i,j=0;
+	for(i=1;i<=n;i++)
+	{ 
+		if(i=arr[j]&&j<len)
+			j++,continue;
+		else printf("%3d",i);
+	}
+	printf("\n");
+}
+int main(void)
+{
+	int n=0, m=0, i = 0,sum=0,num=0,sum1=0,sum2=0,j=0,arr[10]={0};
+	scanf("%d%d",&n,&m);
+	for (i = 1; i <= n; i++)
+	{
+		sum += i;
+	}
+	if (sum > m)
+	{
+		num = sum - m;
+		for(i=0;i<=n;i++)
+		{
+			sum1+=i;
+			while(sum1<n){  
+				for(j=sum1;j<=n;j++)
+				{  
+					if(sum1+j==num)
+					{
+						arr[0]=sum1;
+						arr[1]=j;
+						output(arr,2,n);
+					}
+				}
+				snm1++;
+			}
+		}
+	}
+	else if(sum==m);
+	output(arr,1,n);
+	else printf("你输入的组合不合理");
+	system("pause");
+	return 0;
+}
+
+
+#endif
+
+#if 0
+/*
+一个正整数有可能可以被表示为 m(m>=2) 个连续正整数之和，如：
+15 = 1 + 2 + 3 + 4 + 5
+15 = 4 + 5 + 6
+15 = 7 + 8
+编写一个程序，输入一个正整数，然后找出符合这种要求的所有连续正整数序列，
+若不存在这种序列，则打印None。
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(void)
+{
+	int x,y, i, j, k, cut = 0;
+	printf("y x：");
+	scanf("%d%d",&y, &x);
+	/*
+	***********最大公约数k可以大幅度减少下面循环次数**********
+	*/
+	//求最大约数k
+	for (k = x - 1; k > 2; k--)
+	if (x%k == 0)
+		break;
+	//printf("%d\n",k);
+
+
+
+	//如果是奇数可以拆分成两个数相加（3=1+2，5=2+3.。。。。）
+	if (x % 2 == 1 && (x / 2 + 1)<=y)
+		cut++, printf("%d可以拆分成:%d\t%d\n", x, x / 2, x / 2 + 1);
+	//如果这个数对奇数i取余为零，则这个数可以拆分成连续的i个数相加，
+	//且i为最中间的这个数(15%5=3--->15=4+5+6)
+	for (int i = 2; i <= k; i++)
+	{
+
+		if ((i % 2 == 1) && (x%i == 0))
+		{
+			printf("%d可以拆分成:", x);
+			for (j = 0; j < i; j++)
+			{
+				if (x / i + j - i / 2 < 0 || x / i + j - i / 2>y)
+					break;
+				printf("%d\t", x / i + j - i / 2);
+			}
+			cut++;
+			printf("\n");
+		}
+
+		/*
+		********分析过程（找规律）*****
+		if (x % 2 == 1)
+		printf("x=%d+%d\n", x / 2, x / 2 + 1);
+		if (x%3==0)
+		printf("x=%d+%d+%d\n",x/3-1, x / 3, x / 3 + 1);
+		if (x % 5 ==0 )
+		printf("x=%d+%d+%d+%d+%d\n", x/5-2,x / 5 - 1, x / 5, x / 5 + 1,x/5+2);
+		//....
+
+		*/
+	}
+	if (cut == 0)
+		printf("None\n");
+	system("pause");
+	return 0;
+}
+
+#endif
+
+
+#if 0
+#include<math.h>
+int main(void)
+{
+	int n, m,i,j=1;
+	scanf("%d%d", &n, &m);
+	for (i = n > m ? m : n; i >(n > m ? m : n) / 2; i--)
+	{
+		if (i == m / 2) continue;
+		printf("%d:%3d",m,i);
+		j =i-1;
+		int sum = i;
+		while (j)
+		{
+			if (sum+j == m) { printf("%3d", j); break; }
+			else if (j&&sum + j < m) sum+=j, printf("%3d",j);
+			else (sum + j > m)  ;
+			j--;
+		}
+		printf("\n");
+	}
+	system("pause");
+	return 0;
+}
+
+#endif
+
+#if 0
+
+int strlenght(const char str[])
+{
+	int i = 0;
+	const char *p = str;
+	while (*p)
+	{
+		i++;
+		p++;
+	}
+	return i;
+}
+int main(void)
+{
+	char str1[] = "nsduad";
+	int len = strlenght(str1);
+	printf("%d\n",len);
+	system("pause");
+	return 0;
+}
+
+#endif
+
+#if 0
+int (strlenght)(const char str[])
+{
+	const char *p;
+	for (p = str; *p; p++)
+		;
+	printf("%d\n", sizeof(p - str));
+	return (p-str);
+}
+int main(void)
+{
+	char str1[] = "nsduad";
+	int len = strlenght(str1);
+	printf("%d\n", len);
+	system("pause");
+	return 0;
+}
+
+#endif
+
+#if 0
+//函数调用约定
+extern  int Add(int, int);
+
+int main(void)
+{
+	int num =  3,num1=9;
+	Add(num,num1);
+	system("pause");
+	return 0;
+}
+
+
+#endif
