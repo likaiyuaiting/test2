@@ -1,0 +1,68 @@
+#include<iostream>
+using namespace std;
+class Base
+{
+public:
+	int _b;
+public:
+	virtual void FunTest1()
+	{
+		cout << "Base::FunTest1()" << endl;
+	}
+	virtual void FunTest2()
+	{
+		cout << "Base::FunTest2()" << endl;
+	}
+	virtual void FunTest3()
+	{
+		cout << "Base::FunTest3()" << endl;
+	}
+};
+class Dir:virtual public Base
+{
+public:
+	int _d;
+public:
+	virtual void FunTest1()
+	{
+		cout << "Dir::FunTest1()" << endl;
+	}
+	virtual void FunTest4()
+	{
+		cout << "Dir::FunTest4()" << endl;
+	}
+	virtual void FunTest5()
+	{
+		cout << "Dir::FunTest5()" << endl;
+	}
+};
+
+
+typedef void(*VFP)();
+void Find_VFT(Base &b, char ch[])
+{
+	cout << ch << endl;
+	VFP* p = (VFP *)(*(int *)&b);
+	while (*p)
+	{
+		(*p)();
+		p++;
+	}
+}
+
+int main(void)
+{
+	Base b;
+	Dir d;
+	b._b = 1;
+	d._d = 2;
+	cout << sizeof(b) << endl;
+	cout << sizeof(d) << endl;
+	Find_VFT(b,"Base_VFT:");
+
+	cout << endl;
+	cout << endl;
+	Base &bd = d;
+	Find_VFT(bd, "Dir_VFT:");
+	return 0;
+}
