@@ -1,0 +1,90 @@
+//编写代码模拟三次密码输入的场景。
+#include<stdio.h>
+#include<stdlib.h>
+
+void menu1()
+{
+	printf("\n****************************\n"); 
+	printf("********   1.play    *******\n");
+	printf("********   2.exit    *******\n");
+	printf("****************************\n");
+}
+void geam(int cut)
+{
+	int input = 0;
+	int num = rand() % cut;
+	while (1)
+	{
+		printf("\n我猜数字为：");
+		scanf("%d", &input);
+		if (input == num)
+		{
+			printf("恭喜你。答对了\n");
+			break;
+		}
+		else if (input < num)
+			printf("答小了，加油哟\n");
+
+		else  printf("答大了，加油哟\n");
+	}
+}
+void menu2()
+{
+	int input = 0;
+	printf("\n****************************\n");
+	printf("********   1.入门级    *******\n");
+	printf("********   2.普通级  *******\n");
+	printf("********   3.高手级   *******\n");
+	printf("********   4.大师级  *******\n");
+	printf("********   5.魔鬼级  *******\n");
+	printf("****************************\n");
+	printf("我挑战的级数为：");
+	scanf("%d", &input);
+	switch (input)
+	{
+	case 1:
+		printf("(0---9)");
+		geam(10);
+		break;
+	case 2:
+		printf("(0---30)");
+		geam(30);
+		break;
+	case 3:
+		printf("(0---70)");
+		geam(70);
+		break;
+	case 4:
+		printf("(0---100)");
+		geam(100);
+		break;
+	case 5:
+		printf("(0---500)");
+		geam(500);
+		break;
+	default :
+		printf("你输入不符合！！检查后输入\n"); break;
+		break;
+
+	}
+}
+
+int main()
+{
+	int input, j, k;
+	srand((unsigned int)time(NULL));
+	do{
+		menu1();
+		printf("请输入操作码：");
+		scanf("%d",&input);
+		switch (input)
+		{
+		case 1:menu2(); break;
+		case 2:exit(1); break;
+		default:
+			printf("你输入不符合！！检查后输入\n"); break;
+		}
+	} while (1);
+	system("pause");
+	return 0;
+}
