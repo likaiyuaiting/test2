@@ -1,0 +1,74 @@
+// 放回（1~N）中“1”的个数.cpp : 定义控制台应用程序的入口点。
+//
+/*
+例：
+n=2; 1         cut=1
+n=12:1 10 11 12    cut=5
+......
+*/
+
+#include "stdafx.h"
+
+#include<stdio.h>
+#include<stdlib.h>
+#if 1
+int ret_one_number(int N)
+{
+	int i, cut = 0, num;
+	for (i = 1; i <= N; i++)
+	{
+		num = i;
+		while (num)
+		{
+			if (num % 10 == 1)
+				cut++;
+			num /= 10;
+		}
+	}
+	return cut;
+}
+int main(void)
+{
+	int x,cut;
+	printf("输入数：");
+	scanf_s("%d",&x);
+	cut = ret_one_number(x);
+	printf("%d\n", cut);
+	system("pause");
+	return 0;
+}
+#endif
+
+#if 0
+
+int ret_one_number(int N)
+{
+	int i, cut = 0, num;
+	for (i = 1; i <= N; i++)
+	{
+		num = i;
+		while (num)
+		{
+			if (num % 10 == 1)
+				cut++;
+			num /= 10;
+		}
+	}
+	return cut;
+}
+
+int main(void)
+{
+	int i;
+	for (i = 0; i < INT_MAX;i++)
+	if (ret_one_number(i) == i)
+		printf("%d\t",i);
+	system("pause");
+	return 0;
+}
+
+
+
+#endif
+
+
