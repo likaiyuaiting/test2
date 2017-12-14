@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<stdlib.h>
+double fun(int n)
+{
+	double x;
+	if (n == 1)
+		x = 11;
+	else x = fun(n - 1)*(n + 1) - 1;
+	return x;
+}
+int main(void)
+{
+	for (int i = 1; 1; i++)
+	{
+		if (fun(i) == (int)fun(i))
+		{
+			printf("%d", i);
+			break;
+		}
+	}
+	system("pause");
+	return 0;
+}
