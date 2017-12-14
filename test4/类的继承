@@ -1,0 +1,117 @@
+// 12.cpp : Defines the entry point for the console application.
+// 多重继承.cpp : Defines the entry point for the console application.
+//
+//作业：一个父亲，黄皮肤，黑眼睛，可以说中国话，有音乐天赋，会打篮球。
+//一个母亲，白皮肤，蓝眼睛，可以说中国话和英语，有计算天赋，会跳舞。
+//他们的儿子，黄皮肤，黑眼睛，可以说中国话和英语，有音乐天赋、计算天赋和体育天赋，擅长C++编程. 
+//一个男医生，黄皮肤，黑眼睛，可以说中国话，有文学天赋，他将为以上父母和他们的儿子检查身体。
+//  1.编程实现他们的继承关系和展示其各自天赋
+// 2.编程实现医生为该父母和男孩的体检成员函数。
+
+//#include "stdafx.h"
+#include<iostream>
+
+#include<string>
+using namespace std;
+class person
+{
+public:
+	string skin;
+	string eye;
+	string language;
+	person(string _skin, string _eye, string _language)
+	{
+		skin = _skin;
+		eye = _eye;
+		language = _language;
+	}
+	void getperson(){
+		cout << skin << endl;
+		cout << eye << endl;;
+		cout << language << endl;
+	}
+};
+class farther :public person
+{
+public:
+	string genius1, genius2;
+	farther(string _skin, string _eye, string _language, string _genius1, string _genius2) :person(_skin, _eye, _language)
+	{
+		genius1 = _genius1;
+		genius2 = _genius2;
+	}
+	void putgenius()
+	{
+		
+		cout << "他父亲的天赋为：" << genius1 << "和" << genius2  << endl;
+	}
+};
+
+class mather :public person
+{
+public:
+	string genius1, genius2;
+	mather(string _skin, string _eye, string _language, string _genius1, string _genius2):person(_skin, _eye, _language)
+	{
+		genius1 = _genius1;
+		genius2 = _genius2;
+	}
+	void putgenius()
+	{
+
+		cout << "他母亲的天赋为：" << genius1 << "和" << genius2 << endl;
+	}
+};
+
+class son :public person
+{
+public:
+	string genius1, genius2, genius3, genius4;
+	son(string _skin, string _eye, string _language, string _genius1, string _genius2 ,string _genius3, string _genius4) :person(_skin, _eye, _language)
+	{
+		genius1 = _genius1;
+		genius2 = _genius2;
+		genius3 = _genius3;
+		genius4 = _genius4;
+	}
+	void putgenius()
+	{
+
+		cout << "他的天赋为：" << genius1 << "和" << genius2 <<"和"<< genius3 << "和" << genius4 << endl;
+	}
+};
+
+class doctor :public person
+{
+public:
+	string genius1, genius2;
+	doctor(string _skin, string _eye, string _language, string _genius1, string _genius2) :person(_skin, _eye, _language)
+	{
+		genius1 = _genius1;
+		genius2 = _genius2;
+	}
+	void putgenius()
+	{
+
+		cout << "医生的天赋为：" << genius1 << "和" << genius2<<"  ";
+	}
+	void have()
+	{
+		cout << "他将为以上父母和他们的儿子检查身体" << endl;
+	}
+};
+int main(void)
+{
+	farther fa("黄皮肤", "黑眼睛", "中国话", "音乐天赋", "篮球");
+	fa.putgenius();
+	mather ma("白皮肤", "蓝眼睛", "中国话和英语", "计算天赋", "跳舞");
+	ma.putgenius();
+	son s("黄皮肤", "黑眼睛", "中国话和英语", "音乐天赋", "计算天赋", "体育天赋", "擅长C++编程");//有音乐天赋、计算天赋和体育天赋，擅长C++编程
+	s.putgenius();
+	doctor d("黄皮肤", "黑眼睛", "中国话", "文学天赋", "治病能力");
+	d.putgenius();
+	d.have();
+	return 0;
+}
+
+
