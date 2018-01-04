@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int i,a,b,c,d;
+	for(i=1000;i<10000;i++)
+	{
+		d=i%10;
+		c=i/10%10;
+		b=i/100%10;
+		a=i/1000;
+		if(i==pow(a*10+b+c*10+d,2))
+		{ 
+		    printf("%d\t",i);
+		}
+	}
+	return 0;
+}
