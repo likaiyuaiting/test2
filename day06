@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main()
+{
+	int i,j,a,b,c,d;
+	for(i=1000;1<10000;i++)
+	{
+		a=i/1000;
+		b=i/100%10;
+		c=i/10%10;
+		d=i%10;
+		if(a==b)
+			if(c==d&&c!=a)
+				for(j=0;j<i/2;j++)
+					if(i==j*j)
+						printf("%d",i);
+	}
+	return 0;
+}
