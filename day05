@@ -1,0 +1,16 @@
+#include<stdio.h>
+int main()
+{
+	int i,j,leap=1;
+	float k=1.0,sum=0.0;
+	for(i=2;i<11;i++)
+	{
+		for(j=1;j<i;j++)
+			k/=j;
+		sum+=k*leap;
+		k=1.0;
+		leap*=-1;
+	}
+	printf("%f\n",sum);
+	return 0;
+}
