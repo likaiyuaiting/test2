@@ -1,0 +1,197 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<assert.h>
+
+#define MAX 10  //预先开辟的大小，用宏增加程序的可修改性
+
+typedef int DataType;//数据类型
+
+//静态顺序表
+typedef struct SeqList
+{
+	DataType data[MAX];
+	int sz;
+}SeqList, *pSeqList;
+void InitSeqList(pSeqList ps)
+{
+	assert(ps);
+	ps->sz = 0;
+	memset(ps->data, 0, MAX*sizeof(DataType));
+}
+void DestroySeqList(pSeqList ps)
+{
+	assert(ps);
+	memset(ps->data, 0, MAX*sizeof(DataType));
+	ps->sz = 0;
+}
+void PushBack(pSeqList ps, DataType d)
+{
+	assert(ps);
+	if (ps->sz == MAX)
+	{
+		printf("空间已满，不能放入：");
+		return;
+	}
+	ps->data[ps->sz] = d;
+	ps->sz++;
+}
+void PrintSeqList(const pSeqList ps)
+{
+	int i = 0;
+	assert(ps);
+	for (i = 0; i < ps->sz; i++)
+		printf("%d\t",ps->data [i]);
+	printf("\n");
+}
+void PopBack(pSeqList ps)
+{
+	assert(ps);
+	ps->sz--;
+}
+void PushFront(pSeqList ps, DataType d)
+{
+	int i = 0;
+	assert(ps);
+	if (ps->sz == MAX)
+	{
+		printf("空间已满，放入失败。\n");
+		return;
+	}
+	for (i = ps->sz - 1; i >= 0; i--)
+	{
+		ps->data[i + 1] = ps->data[i];
+	}
+	ps->data[0] = d;
+	ps->sz++;
+}
+void PopFront(pSeqList ps)
+{
+	int i = 0;
+	assert(ps);
+	for (i = 0; i < ps->sz-1; i++)
+	{
+		ps->data[i] = ps->data[i + 1];
+	}
+	(ps->sz ==0)?1:ps->sz--;
+}
+void Insert(pSeqList ps, int pos, DataType d)
+{
+	int i;
+	assert(ps);
+	if (pos>ps->sz)
+	{
+		printf("你输入位置信息有误，请检查后输入\n");
+		return;
+	}
+	for (i = ps->sz - 1; i >= pos; i--)
+	{
+		ps->data[i + 1] = ps->data[i];
+	}
+	ps->data[pos] = d;
+	ps->sz++;
+}
+void Sort(pSeqList ps)
+{
+	int i = 0, j = 0,tmp;
+	assert(ps);
+	for (i = 0; i < ps->sz;i++)
+		for (j = 0; j < ps->sz - 1 - i; j++)
+		{
+			if (ps->data[j] > ps->data[j + 1])
+			{
+			tmp = ps->data[j];
+			ps->data[j] = ps->data[j + 1];
+			ps->data[j + 1] = tmp;
+			}
+		}
+}
+int BinarySearch(pSeqList ps, DataType d)
+{
+	int left = 0;
+	int right = ps->sz - 1;
+	int min = 0;
+	assert(ps);
+	while (left <= right)
+	{
+		min = right + ((left - right)>>1);//左移优先级底，用括号提升优先级
+		if (ps->data[min] == d)
+			return min;
+		else if(ps->data[min] < d)
+			left = min + 1;
+		else right = min - 1;
+	}
+	return -1;
+}
+int Find(pSeqList ps, DataType d)
+{
+	int i = 0;
+	assert(ps);
+	for (i = 0; i < ps->sz; i++)
+	{
+		if (ps->data[i] == d)
+			return i;
+	}
+	return -1;
+}
+void Remove(pSeqList ps, DataType d)
+{
+	assert(ps);
+	int i = Find(ps, d);
+	if (i == -1)
+	{
+		printf("要删除的元素不存在\n");
+		return;
+	}
+	for (i; i < ps->sz; i++)
+	{
+		ps->data[i] = ps->data[i + 1];
+	}
+	ps->sz--;
+}
+void RemoveAll(pSeqList ps)
+{
+	assert(ps);
+	memset(ps, 0, MAX*sizeof(DataType));
+	ps->sz = 0;
+}
+void test()
+{
+	SeqList ps;
+	InitSeqList(&ps);
+	PushBack(&ps, 3);
+	PushBack(&ps, 2);
+	PushBack(&ps, 1);
+	PushBack(&ps, 0);
+	PrintSeqList(&ps);
+
+	PopBack(&ps);
+	PrintSeqList(&ps);
+
+	PushFront(&ps, 2);
+	PrintSeqList(&ps);
+
+	Insert(&ps, 2, 1);
+	PrintSeqList(&ps);
+
+	Sort(&ps);
+	PrintSeqList(&ps);
+
+	int i=BinarySearch(&ps, 3);
+	printf("%d\n",i);
+
+	Remove(&ps, 1);
+	PrintSeqList(&ps);
+
+	RemoveAll(&ps);
+	PrintSeqList(&ps);
+
+
+	DestroySeqList(&ps);
+}
+int main(void)
+{
+	test();
+	system("pause");
+	return 0;
+}
