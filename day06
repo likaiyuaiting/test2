@@ -9,10 +9,10 @@ int main()
 		c=i/10%10;
 		d=i%10;
 		if(a==b)
-			if(c==d&&c!=a)
-				for(j=0;j<i/2;j++)
-					if(i==j*j)
-						printf("%d",i);
+		if(c==d&&c!=a)
+			for(j=0;j<i/2;j++)
+				if(i==j*j)
+		printf("%d",i);
 	}
 	return 0;
 }
