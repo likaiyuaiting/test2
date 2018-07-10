@@ -12,7 +12,7 @@ int main(void)
 {
 	for (int i = 1; 1; i++)
 	{
-		if (fun(i) = = (int)fun(i))
+		if (fun(i) == (int)fun(i))
 		{
 			printf("%d", i);
 			break;
