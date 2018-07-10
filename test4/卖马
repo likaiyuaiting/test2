@@ -3,7 +3,7 @@
 double fun(int n)
 {
 	double x;
-	if (n == 1)
+	if (n = 1)
 		x = 11;
 	else x = fun(n - 1)*(n + 1) - 1;
 	return x;
