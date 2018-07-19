@@ -1,5 +1,5 @@
 #include<stdio.h>
-int main()
+int main(viod)
 {
 	int i;
 	for(i=100;i<1000;i++)
