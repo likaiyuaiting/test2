@@ -5,7 +5,7 @@ int main(void)
 	for(i=100;i<1000;i++)
 	{
 	if(i/100==i/10%10)
-		printf("%d\t",i);
+			printf("%d\t",i);
 	}
 	return 0;
 }
